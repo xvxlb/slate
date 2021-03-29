@@ -630,13 +630,24 @@ export const Editable = (props: EditableProps) => {
           },
           [attributes.onCompositionEnd]
         )}
+        onCompositionUpdate={useCallback(
+          (event: React.CompositionEvent<HTMLDivElement>) => {
+            if (
+              hasEditableTarget(editor, event.target) &&
+              !isEventHandled(event, attributes.onCompositionUpdate)
+            ) {
+              state.isComposing = true
+            }
+          },
+          [attributes.onCompositionUpdate]
+        )}
         onCompositionStart={useCallback(
           (event: React.CompositionEvent<HTMLDivElement>) => {
             if (
               hasEditableTarget(editor, event.target) &&
               !isEventHandled(event, attributes.onCompositionStart)
             ) {
-              state.isComposing = true
+              Editor.insertText(editor, '')
             }
           },
           [attributes.onCompositionStart]

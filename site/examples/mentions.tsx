@@ -112,7 +112,7 @@ const MentionExample = () => {
       <Editable
         renderElement={renderElement}
         onKeyDown={onKeyDown}
-        placeholder="Enter some text..."
+        // placeholder="Enter some text..."
       />
       {target && chars.length > 0 && (
         <Portal>
